@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEVEN ELEVEN | Evoluir como jogadora é evoluir como atleta</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- Biblioteca de Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <!--  CABEÇALHO -->
+    <header class="header-hero">
+        <div class="logo">
+            <a href="index.html">
+                <img src="/img/1111/logo-branco.png" alt="Eleven Eleven" class="logo-img">
+            </a>
+        </div>
+        
+        <!-- MENU DESKTOP (Visto só no computador) -->
+        <nav class="menu-desktop">
+            <ul>
+                <li><a href="index.html" class="ativo">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="#contactos">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- BOTÃO HAMBÚRGUER (Visto só no mobile) -->
+        <button class="btn-menu-mobile" id="btnMenu" aria-label="Abrir Menu">
+            <span class="linha"></span>
+            <span class="linha"></span>
+        </button>
+    </header>
+
+    <!-- MENU MOBILE FULLSCREEN (Escondido por defeito) -->
+    <div class="menu-mobile-overlay" id="menuOverlay">
+        <button class="btn-fechar" id="btnFechar" aria-label="Fechar Menu">X</button>
+        <nav class="links-mobile">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="#contactos">Contact</a></li>
+            </ul>
+            <a href="projects.html" class="btn-mobile-destaque">Quero Ser 11:11</a>
+        </nav>
+    </div>
+
+    <main>
+        <section id="hero">
+        <!-- SECÇÃO HERO (A Primeira Impressão) -->
+            <div class="hero-conteudo">
+                <!-- O <span> permite pintar palavras específicas no CSS -->
+                <h1>EVOLUIR COMO<br>JOGADORA É EVOLUIR<br>COMO <span>ATLETA.</span></h1>
+                
+                <!-- Mantemos o subtítulo escondido no mobile via CSS -->
+                <p class="subtitulo-hero">Desenvolvemos a tua performance dentro e fora de campo</p>
+                
+                <a href="projects.html" class="btn-hero">QUERO SER 11:11</a> <!-- pra onde leva o botão inicial -->
+            </div>
+        </section>
+
+        <!-- SECÇÃO 2: METODOLOGIA -->
+        <section id="visao">
+            <div class="visao-cabecalho">
+                <h2>A ATLETA COMO UM TODO</h2>
+                <p class="intro-visao">Na ELEVEN ELEVEN, acreditamos que a evolução vai além do treino de campo. Trabalhamos as várias dimensões para criar jogadoras completas.</p>
+            </div>
+
+            <div class="pilares-container">
+                <!-- Pilar 1 -->
+                <div class="pilar">
+                    <div class="pilar-topo">
+                        <span class="pilar-numero">01</span>
+                        <i class="fa-regular fa-clipboard pilar-icone-grande"></i>
+                    </div>
+                    <i class="fa-regular fa-clipboard pilar-icone-pequeno"></i>
+                    <h3>TREINO<br>PERSONALIZADO</h3>
+                    <p>Evolução construída a partir das características e metas de cada atleta</p>
+                </div>
+
+                <!-- Pilar 2 (com classe de destaque para o fundo verde escuro) -->
+                <div class="pilar pilar-destaque">
+                    <div class="pilar-topo">
+                        <span class="pilar-numero">02</span>
+                        <i class="fa-solid fa-dumbbell pilar-icone-grande"></i>
+                    </div>
+                    <i class="fa-solid fa-dumbbell pilar-icone-pequeno"></i>
+                    <h3>PREPARAÇÃO<br>FÍSICA</h3>
+                    <p>Potencialização da força, velocidade, resistência e agilidade para máxima performance</p>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="pilar">
+                    <div class="pilar-topo">
+                        <span class="pilar-numero">03</span>
+                        <i class="fa-solid fa-utensils pilar-icone-grande"></i>
+                    </div>
+                    <i class="fa-solid fa-apple-whole pilar-icone-pequeno"></i>
+                    <h3>NUTRIÇÃO<br>DESPORTIVA</h3>
+                    <p>Nutrição estratégica para potencializar resultados em cada fase da evolução</p>
+                </div>
+
+                <!-- Pilar 4 -->
+                <div class="pilar">
+                    <div class="pilar-topo">
+                        <span class="pilar-numero">04</span>
+                        <i class="fa-solid fa-brain pilar-icone-grande"></i>
+                    </div>
+                    <i class="fa-solid fa-brain pilar-icone-pequeno"></i>
+                    <h3>PREPARAÇÃO<br>MENTAL</h3>
+                    <p>Fortalecimento mental para competir com confiança, equilíbrio e determinação</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECÇÃO 3: DESTAQUE PROJETO (Off-Season) -->
+        <section id="destaque-projeto">
+
+            <!-- FAIXA ROLANTE (MARQUEE) -->
+            <div class="faixa-rolante">
+                <div class="faixa-conteudo">
+                    <!-- O texto é repetido em dois blocos iguais para o loop funcionar sem quebras -->
+                    <span>ELEVENELEVENELEVENELEVENELEVENELEVENELEVENELEVENELEVEN</span>
+                    <span>ELEVENELEVENELEVENELEVENELEVENELEVENELEVENELEVENELEVEN</span>
+                </div>
+            </div>
+
+            <div class="destaque-container">
+                <div class="imagem-projeto">
+                    <!-- Substitui pelo caminho correto da imagem da bola na rede -->
+                    <img src="./img/details/chuteira-2.jpg" alt="Programa Off-Season">
+                </div>
+                <div class="info-projeto">
+                    <h2>INSCRIÇÕES ABERTAS<br>PROGRAMA<br>OFF-SEASON 2026</h2>
+                    <p>Prepara a tua próxima época com a melhor equipa multidisciplinar.</p>
+                    <a href="projects.html" class="btn-saber-mais">SABER MAIS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECÇÃO 4: DIAGNÓSTICO RÁPIDO -->
+        <section id="diagnostico">
+            <h2>Onde precisa o teu jogo de evoluir mais?</h2>
+            <p>Faz uma autoavaliação de 1 minuto e descobre qual a área que te está a impedir de atingir o próximo nível.</p>
+            <!-- Este botão irá abrir o teu quiz ou formulário interativo -->
+            <button type="button">Iniciar Diagnóstico Gratuito</button>
+        </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="info-rodape">
+            <p>ELEVEN ELEVEN © 2026</p>
+            <p>Email: <a href="mailto:eleven.trainingcamp@gmail.com">eleven.trainingcamp@gmail.com</a></p>
+        </div>
+        <div class="redes-sociais">
+            <!-- Links para as redes sociais -->
+            <a href="https://www.instagram.com/eleven.elevenpt/"  target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@eleven.elevenpt?_r=1&_t=zg-9609tqgijxc" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+    </footer>
+
+    <!-- ligação com javascript -->
+    <script src="index.js"></script>
+    <script src="projects.js"></script>
+
+</body>
+</html>
