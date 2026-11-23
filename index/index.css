@@ -168,109 +168,6 @@ a {
     transition: background-color 0.3s ease;
 }
 
-/* ==========================================================================
-   SECÇÃO 2: A ATLETA COMO UM TODO
-   ========================================================================== */
-#visao {
-    padding: 80px 5%;
-    text-align: center;
-    background-color: var(--fundo-claro);
-    
-    /* 1. O Design de "Cartão Flutuante" da Imagem */
-    width: 92%; 
-    max-width: 1400px;
-
-    /* Ordem: Cima | Direita | Baixo | Esquerda */
-    margin: 0 auto 20px auto;
-
-    border-radius: 40px; /* Cantos bem arredondados */
-    box-shadow: 0 -15px 40px rgba(0,0,0,0.3); /* Sombra suave para destacar da foto do Hero */
-    
-    /* 2. Mantém por cima do Hero */
-    position: relative;
-    z-index: 2;
-
-    /* 3. Estado Inicial: Invisível e um pouco mais abaixo */
-    opacity: 0;
-    transform: translateY(80px);
-    transition: opacity 1s ease-out, transform 1s ease-out; /* Transição suave de 1 segundo */
-}
-
-/* 4. Estado Final: Visível e no sítio certo (Adicionado via Javascript) */
-#visao.visivel {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* O Título Principal */
-#visao h2 { 
-    font-size: 3rem; 
-    margin-bottom: 20px; 
-    color: var(--verde-escuro); /* Verde da marca */
-    transform: none; /* Endireita o texto */
-    font-style: normal;
-}
-
-/* O texto introdutório abaixo do título */
-.intro-visao { 
-    max-width: 700px; 
-    margin: 0 auto 60px auto; 
-    font-size: 1.1rem; 
-    color: var(--texto-escuro);
-    line-height: 1.6;
-    transform: none; /* Endireita o texto */
-    font-style: normal;
-}
-
-/* O Contentor dos 4 Cartões */
-/* O Contentor dos 4 Cartões */
-.pilares-container {
-    display: grid;
-    /* minmax(0, 1fr) impede palavras grandes de alargar um cartão mais que os outros */
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    /* Espaçamento adaptável entre tablet e PC */
-    gap: clamp(12px, 2vw, 30px);
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: stretch; /* Iguala a altura de todos os cartões */
-}
-
-/* O Design de cada Cartão Verde Claro */
-.pilar {
-    background-color: #e8f0e3; /* Mantém aqui a cor exata que estás a usar */
-    padding: clamp(20px, 3vw, 40px) clamp(12px, 2vw, 25px);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 100%; /* Garante que preenche 100% da altura da linha */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-}
-
-/* O Título dentro do Cartão */
-.pilar h3 {
-    /* Diminui suavemente no tablet para caberem os 4 na horizontal */
-    font-size: clamp(1rem, 1.6vw, 1.4rem);
-    color: var(--texto-escuro);
-    margin-bottom: 20px;
-    line-height: 1.2;
-    min-height: 2.5em; /* Mantém os parágrafos alinhados na mesma altura */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: none;
-    font-style: normal;
-}
-
-/* O Texto dentro do Cartão */
-.pilar p {
-    font-size: clamp(0.85rem, 1.1vw, 0.95rem);
-    color: var(--texto-escuro);
-    line-height: 1.5;
-    transform: none;
-    font-style: normal;
-}
 
 /* ==========================================================================
    FAIXA ROLANTE (MARQUEE INFINITO)
@@ -316,7 +213,167 @@ a {
         transform: translateX(0); /* Desliza lentamente para a direita */
     }
 }
+/* ==========================================
+   SECÇÃO 2: A ATLETA COMO UM TODO
+   ========================================== */
+#visao {
+    padding: clamp(50px, 6vw, 80px) 5%;
+    text-align: left; /* Alinha o conteúdo à esquerda como na referência */
+    background-color: var(--fundo-claro);
 
+    /* Mantém o efeito de "Cartão Flutuante" menor que a página */
+    width: 92%;
+    max-width: 1400px;
+    margin: 0 auto 20px auto;
+    border-radius: 40px;
+    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+
+    /* Animação de entrada (mantida para funcionar com o teu index.js) */
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+#visao.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Cabeçalho (Título + Subtítulo alinhados à esquerda) */
+.visao-cabecalho {
+    max-width: 1200px;
+    margin: 0 auto clamp(35px, 4vw, 55px) auto;
+}
+
+#visao h2 {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    font-style: italic;
+    color: var(--verde-escuro);
+    margin-bottom: 14px;
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+.intro-visao {
+    max-width: 680px;
+    margin: 0;
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    color: var(--texto-escuro);
+    line-height: 1.5;
+    font-style: normal;
+}
+
+/* Contentor dos 4 Cartões (sempre iguais na horizontal em PC e Tablet) */
+.pilares-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(12px, 2vw, 24px);
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+/* Cartão Padrão (01, 03 e 04) */
+.pilar {
+    background-color: #f4f6f1;
+    border: 1px solid #d5dacd;
+    border-radius: 14px;
+    padding: clamp(18px, 2.2vw, 28px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pilar:hover {
+    transform: translateY(-4px);
+}
+
+/* Linha do Topo: Número à esquerda + Ícone grande à direita */
+.pilar-topo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(16px, 2.2vw, 26px);
+}
+
+.pilar-numero {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    font-weight: 800;
+    font-style: italic;
+    color: #8c967e;
+    line-height: 1;
+}
+
+.pilar-icone-grande {
+    font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+    color: #5a6351;
+    opacity: 0.85;
+}
+
+/* Ícone pequeno acima do título */
+.pilar-icone-pequeno {
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    color: #5a6351;
+    margin-bottom: 12px;
+}
+
+/* Título do Cartão */
+.pilar h3 {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1rem, 1.45vw, 1.35rem);
+    font-weight: 800;
+    font-style: italic;
+    color: #1f241c;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    min-height: 2.4em; /* Mantém os textos alinhados na mesma linha */
+}
+
+/* Texto do Cartão */
+.pilar p {
+    font-size: clamp(0.8rem, 1.05vw, 0.92rem);
+    color: #2f362c;
+    line-height: 1.45;
+    margin: 0;
+    font-style: normal;
+}
+
+/* ==========================================
+   CARTÃO EM DESTAQUE (02 - Fundo Verde Escuro)
+   ========================================== */
+.pilar-destaque {
+    background-color: #3a4536;
+    border-color: #3a4536;
+    box-shadow: 0 18px 35px rgba(30, 38, 27, 0.28);
+}
+
+.pilar-destaque .pilar-numero {
+    color: #7c8a72;
+}
+
+.pilar-destaque .pilar-icone-grande,
+.pilar-destaque .pilar-icone-pequeno {
+    color: #a9b59e;
+}
+
+.pilar-destaque h3 {
+    color: #f4f6f1;
+}
+
+.pilar-destaque p {
+    color: #e2e6dc;
+}
 /* ==========================================================================
    SECÇÃO 3: DESTAQUE PROJETO (OFF-SEASON)
    ========================================================================== */
