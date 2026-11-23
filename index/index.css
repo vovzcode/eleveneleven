@@ -1,0 +1,558 @@
+@import url("./base.css");
+
+/* ==========================================================================
+   RESET & BODY
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fonte-base);
+    background-color: var(--fundo-claro);
+    color: var(--texto-escuro);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+/* ==========================================================================
+   CABEÇALHO BASE (PC E MOBILE)
+   ========================================================================== */
+.header-hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    /* Usa CSS Grid para centrar o menu perfeitamente enquanto o logo fica à esquerda */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    
+    padding: 12px 5%;
+    background-color: transparent;
+    transition: background-color 0.4s ease;
+    z-index: 1000;
+}
+
+.header-hero.scrolled {
+    background-color: var(--verde-escuro);
+}
+
+.logo a {
+    display: inline-block;
+}
+
+.logo-img {
+    max-width: 140px;
+    display: block;
+}
+
+/* O menu ocupa o espaço central (2ª coluna do grid) */
+.menu-desktop {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-desktop ul {
+    list-style: none;
+    display: flex;
+    gap: 15px; /* Espaço mais pequeno entre os botões */
+    padding: 5px 20px;
+    border-radius: 30px;
+}
+
+.menu-desktop a {
+    color: var(--texto-claro);
+    font-family: var(--fonte-base); /* Fonte mais limpa para o menu */
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px; /* Arredonda o fundo dos links */
+    transition: all 0.3s ease;
+}
+
+/* A "pílula" branca transparente quando a página está ativa */
+.menu-desktop a.ativo {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.menu-desktop a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Esconder elementos mobile no PC */
+.btn-menu-mobile, .menu-mobile-overlay { display: none; }
+
+/* ==========================================================================
+   HERO SECTION - DESKTOP
+   ========================================================================== */
+#hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 8%;
+    
+    /* 1. Cor de segurança no fundo */
+    background-color: var(--verde-escuro);
+    
+    /* 2. A sombra gradiente + a tua imagem */
+    background-image: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%), 
+                      url('./img/webdesign/pc_hero_bgd.png');
+                      
+    /* 3. Comportamento e alinhamento da imagem */
+    background-position: center right;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Mantém a imagem presa no fundo */
+}
+
+.hero-conteudo {
+    max-width: 600px;
+    color: var(--texto-claro);
+    transition: opacity 0.4s ease, transform 0.4s ease; /* texto desaparece de forma suave*/
+}
+
+.hero-conteudo.fade-out {
+    opacity: 0; /* Fica 100% invisível */
+    pointer-events: none; /* Desativa o botão invisível para não ser clicado por acidente */
+    transform: translateY(-30px); /* Faz o texto subir ligeiramente enquanto desaparece */
+}
+
+.hero-conteudo h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-align: left;
+    transform: none; /* Endireita o texto */
+    font-style: normal;
+}
+
+.hero-conteudo h1 span {
+    color: var(--verde-medio); /* Pinta a palavra ATLETA */
+}
+
+/* O subtítulo do PC */
+.subtitulo-hero {
+    font-family: var(--fonte-base);
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    text-align: left;
+    transform: none;
+    font-style: normal;
+}
+
+.btn-hero {
+    display: inline-block;
+    background-color: var(--bege);
+    color: var(--verde-escuro);
+    padding: 15px 40px;
+    font-family: var(--fonte-secundaria);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* ==========================================================================
+   SECÇÃO 2: A ATLETA COMO UM TODO
+   ========================================================================== */
+#visao {
+    padding: 80px 5%;
+    text-align: center;
+    background-color: var(--fundo-claro);
+    
+    /* 1. O Design de "Cartão Flutuante" da Imagem */
+    width: 92%; 
+    max-width: 1400px;
+
+    /* Ordem: Cima | Direita | Baixo | Esquerda */
+    margin: 0 auto 20px auto;
+
+    border-radius: 40px; /* Cantos bem arredondados */
+    box-shadow: 0 -15px 40px rgba(0,0,0,0.3); /* Sombra suave para destacar da foto do Hero */
+    
+    /* 2. Mantém por cima do Hero */
+    position: relative;
+    z-index: 2;
+
+    /* 3. Estado Inicial: Invisível e um pouco mais abaixo */
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Transição suave de 1 segundo */
+}
+
+/* 4. Estado Final: Visível e no sítio certo (Adicionado via Javascript) */
+#visao.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* O Título Principal */
+#visao h2 { 
+    font-size: 3rem; 
+    margin-bottom: 20px; 
+    color: var(--verde-escuro); /* Verde da marca */
+    transform: none; /* Endireita o texto */
+    font-style: normal;
+}
+
+/* O texto introdutório abaixo do título */
+.intro-visao { 
+    max-width: 700px; 
+    margin: 0 auto 60px auto; 
+    font-size: 1.1rem; 
+    color: var(--texto-escuro);
+    line-height: 1.6;
+    transform: none; /* Endireita o texto */
+    font-style: normal;
+}
+
+/* O Contentor dos 4 Cartões */
+/* O Contentor dos 4 Cartões */
+.pilares-container {
+    display: grid;
+    /* minmax(0, 1fr) impede palavras grandes de alargar um cartão mais que os outros */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    /* Espaçamento adaptável entre tablet e PC */
+    gap: clamp(12px, 2vw, 30px);
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch; /* Iguala a altura de todos os cartões */
+}
+
+/* O Design de cada Cartão Verde Claro */
+.pilar {
+    background-color: #e8f0e3; /* Mantém aqui a cor exata que estás a usar */
+    padding: clamp(20px, 3vw, 40px) clamp(12px, 2vw, 25px);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%; /* Garante que preenche 100% da altura da linha */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* O Título dentro do Cartão */
+.pilar h3 {
+    /* Diminui suavemente no tablet para caberem os 4 na horizontal */
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
+    color: var(--texto-escuro);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    min-height: 2.5em; /* Mantém os parágrafos alinhados na mesma altura */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+    font-style: normal;
+}
+
+/* O Texto dentro do Cartão */
+.pilar p {
+    font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+    color: var(--texto-escuro);
+    line-height: 1.5;
+    transform: none;
+    font-style: normal;
+}
+
+/* ==========================================================================
+   FAIXA ROLANTE (MARQUEE INFINITO)
+   ========================================================================== */
+.faixa-rolante {
+    width: 100%;
+    overflow: hidden; 
+    white-space: nowrap; 
+    padding-top: 30px; 
+    /* AUMENTAMOS ESTA MARGEM (antes era 20px) PARA AFASTAR A IMAGEM E O TÍTULO */
+    margin-bottom: 80px; 
+}
+
+.faixa-conteudo {
+    display: inline-block;
+    /* Animação: Nome, Duração (20s), Ritmo Constante (linear), Repetição (infinite) */
+    animation: rolar-esq-dir 20s linear infinite;
+}
+
+.faixa-conteudo span {
+    font-family: var(--fonte-titulo); /* Usa a tua fonte de título (ex: Anton/Oswald) */
+    font-size: 8rem; /* Tamanho gigante do texto */
+    font-weight: 800;
+    font-style: italic; /* Dá a inclinação visível na tua imagem */
+    
+    /* Efeito de Contorno (Texto Vazado) */
+    color: transparent; /* O interior da letra fica invisível */
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.15); /* Contorno esbranquiçado e semi-transparente */
+    
+    letter-spacing: 2px;
+}
+
+/* 
+   A ANIMAÇÃO (Da Esquerda para a Direita) 
+   Como duplicámos o texto no HTML, deslizamos o bloco de -50% para 0%. 
+   Quando chega ao 0%, a primeira metade está no lugar da segunda, criando um salto invisível!
+*/
+@keyframes rolar-esq-dir {
+    0% {
+        transform: translateX(-50%); /* Começa empurrado para a esquerda */
+    }
+    100% {
+        transform: translateX(0); /* Desliza lentamente para a direita */
+    }
+}
+
+/* ==========================================================================
+   SECÇÃO 3: DESTAQUE PROJETO (OFF-SEASON)
+   ========================================================================== */
+#destaque-projeto { 
+    background-color: var(--verde-escuro); 
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    /* ADICIONA ESTE PADDING PARA DAR ESPAÇO EM BAIXO */
+    padding-bottom: 120px; 
+}
+
+/* Container para alinhar a imagem e o texto lado a lado no centro */
+.destaque-container {
+    display: flex;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.imagem-projeto { 
+    flex: 1; 
+    display: flex;
+    justify-content: center; /* Centraliza a imagem na sua metade do ecrã */
+    align-items: center;
+}
+
+.imagem-projeto img { 
+    width: 100%; 
+    max-width: 450px; /* LARGURA: Altera este valor para deixar a foto maior ou menor */
+    aspect-ratio: 4 / 5; /* FORMATO: 4/5 cria um retângulo vertical. Se preferires perfeitamente quadrada, usa 1 / 1 */
+    object-fit: cover; /* Preenche a caixa e corta o excesso da foto automaticamente sem a esmagar */
+    
+    /* Extras de Design (Opcionais mas recomendados) */
+    border-radius: 20px; /* Arredonda os cantos da foto */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Adiciona uma sombra para descolar a foto do fundo verde */
+}
+
+.info-projeto { 
+    flex: 1; 
+    padding: 150px 5% 50px 5%; 
+    text-align: right; 
+}
+
+.info-projeto h2 { 
+    font-size: 3.5rem; 
+    color: var(--bege); /* Cor do título */
+    margin-bottom: 20px; 
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.info-projeto p { 
+    font-size: 1.2rem; 
+    color: var(--texto-claro); 
+    margin-bottom: 40px; 
+}
+
+.btn-saber-mais { 
+    display: inline-block;
+    background-color: var(--bege); 
+    color: var(--verde-escuro); 
+    padding: 15px 40px; 
+    font-size: 1.1rem;
+    font-weight: 700; 
+    text-transform: uppercase; 
+    border-radius: 8px; /* Cantos ligeiramente arredondados */
+    transition: background-color 0.3s ease; 
+}
+
+.btn-saber-mais:hover { 
+    background-color: var(--verde-claro); 
+}
+
+/* ==========================================================================
+   OUTRAS SECÇÕES ( Projetos, Diagnóstico, Footer)
+   ========================================================================== */
+
+#diagnostico { padding: 100px 5%; text-align: center; background-color: var(--verde-escuro); color: var(--bege); }
+#diagnostico h2 { font-size: 2.5rem; margin-bottom: 20px; }
+#diagnostico p { max-width: 700px; margin: 0 auto 40px auto; font-size: 1.1rem; }
+#diagnostico button { background-color: var(--bege); color: var(--verde-escuro); border: none; padding: 15px 30px; font-size: 1rem; font-weight: 700; text-transform: uppercase; border-radius: 4px; cursor: pointer; }
+
+footer { display: flex; justify-content: space-between; align-items: center; padding: 40px 5%; background-color: #111; color: #888; font-size: 0.9rem; }
+.info-rodape p { margin-bottom: 5px; }
+.redes-sociais { display: flex; gap: 20px; }
+.redes-sociais a:hover { color: var(--bege); }
+
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. Ajuste do Cabeçalho Mobile */
+    .header-hero {
+        padding: 12px 5%;
+        display: flex; /* Substitui o Grid no telemóvel */
+        justify-content: space-between;
+    }
+    
+    .logo-img {
+        max-width: 110px;
+    }
+    
+    .menu-desktop {
+        display: none; /* Esconde o texto do menu de PC */
+    }
+
+    .subtitulo-hero {
+        display: none; /* Esconde o parágrafo no telemóvel */
+    }
+
+    /* 2. Botão Hambúrguer */
+    .btn-menu-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 10000;
+    }
+    
+    .btn-menu-mobile .linha {
+        width: 30px;
+        height: 3px;
+        background-color: var(--bege);
+        transition: 0.3s;
+    }
+
+    /* 3. Overlay do Menu (Fundo Verde que Desliza) */
+    .menu-mobile-overlay {
+        display: flex !important;
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important; /* Começa escondido à direita */
+        width: 100% !important;
+        height: 100vh !important;
+        background-color: var(--verde-escuro) !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        transition: right 0.4s ease !important; /* Animação */
+        z-index: 9999 !important;
+    }
+
+    /* Classe que o Javascript aciona para mostrar o menu */
+    .menu-mobile-overlay.aberto {
+        right: 0 !important; 
+    }
+
+    .btn-fechar {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        background: none;
+        border: none;
+        color: var(--bege);
+        font-size: 2.5rem;
+        font-family: var(--fonte-secundaria);
+        cursor: pointer;
+    }
+
+    .links-mobile ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+        margin-bottom: 40px;
+        padding: 0;
+    }
+
+    .links-mobile a {
+        color: var(--bege);
+        font-family: var(--fonte-secundaria);
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .btn-mobile-destaque {
+        display: inline-block;
+        color: var(--verde-escuro);
+        background-color: var(--bege);
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-family: var(--fonte-secundaria);
+        font-weight: bold;
+    }
+
+    /* 4. Hero Section Mobile (A primeira imagem) */
+    #hero {
+        align-items: flex-end;
+        padding: 0 20px 50px 20px;
+        background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%),
+                    url('./img/webdesign/moblie_bgd-3.png') center top/cover no-repeat;
+    }
+
+    .hero-conteudo {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-conteudo h1 {
+        transform: none; 
+        font-style: normal;
+        font-size: 2.2rem; 
+        text-align: center;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .btn-hero {
+        width: 80%;
+        max-width: 320px;
+        text-align: center;
+        background-color: var(--verde-claro);
+        border-radius: 30px; 
+        padding: 12px;
+    }
+
+    /* 5. Ajustes do Mobile para o resto do site */
+    .pilares-container { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    #destaque-projeto { flex-direction: column; }
+    .info-projeto { padding: 50px 5%; text-align: center; }
+    #diagnostico { padding: 60px 5%; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+}
+
+@media (max-width: 480px) {
+    .pilares-container { grid-template-columns: 1fr; }
+}
